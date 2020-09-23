@@ -1,0 +1,103 @@
+<P>:
+    Label:
+        text: "\n\nVlerë e pamundur për një ose \nmë shumë fusha."
+        font_size: 26
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+    Button:
+        text: "Kthehu"
+        font_size: 20
+        size_hint: 0.6, 0.17
+        pos_hint: {"x":0.2, "y":0.1}
+        on_release:
+            root.parent.parent.parent.dismiss()
+
+<MainPage>:
+
+    input_label: input_label
+    result_label: result_label
+
+    x1_value: x1_value
+    x2_value: x2_value
+
+    state_label: state_label
+
+    third_input_label: third_input_label
+
+    GridLayout:
+        size_hint: 0.88, 0.5/3
+        pos_hint: {'x': 0.06, 'y': 0.70}
+        rows: 1
+        cols: 1
+
+        GridLayout:
+            rows: 1
+            cols: 3
+
+            TextInput:
+                id: x1_value
+                font_size: 50
+                padding_y:[32, 0]
+
+            TextInput:
+                id: x2_value
+                font_size: 50
+                padding_y:[32, 0]
+
+            TextInput:
+                id: input_label
+                font_size: 50
+                padding_y:[32, 0]
+
+    Button:
+        text: 'Llogarit'
+        font_size: 20
+        size_hint: 0.88, 0.06
+        pos_hint: {'x': 0.06, 'y': 0.640}
+        on_release:
+            root.calculate()
+
+    TextInput:
+        id: result_label
+
+        text: 'Rezultati: '
+        font_size: 26
+        padding_y:[9, 0]
+        pos_hint: {'x': 0.06, 'y': 0.53}
+        size_hint: 0.88, 0.060
+
+    Button:
+        text: 'Fshij'
+        font_size: 20
+        size_hint: 0.88, 0.06
+        pos_hint: {'x': 0.06, 'y': 0.470}
+        on_release:
+            root.clear()
+
+    Label:
+        id: state_label
+
+        text: 'Duke kalkuluar lambdën'
+        font_size: 16
+        size_hint: 0.4, 0.07
+        pos_hint: {'right': 0.94, 'y':0.1}
+
+    Label:
+        text: 'x1'
+        font_size: 30
+        size_hint: 0.0001, 0.0001
+        pos_hint: {'x': 0.13, 'y': 0.9}
+    Label:
+        text: 'x2'
+        font_size: 30
+        size_hint: 0.0001, 0.0001
+        pos_hint: {'x': 0.42, 'y': 0.9}
+
+    Label:
+        id: third_input_label
+
+        text: 'Pika'
+        font_size: 30
+        size_hint: 0.0001, 0.0001
+        pos_hint: {'x': 0.75, 'y': 0.9}
