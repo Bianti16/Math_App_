@@ -43,7 +43,7 @@ class P_in_Line(Screen):
         state_label = ObjectProperty(None)
         third_input_label = ObjectProperty(None)
 
-        self.btn = Button(text='Kalkulo pikën', size_hint=(0.4, 0.07), font_size=18,
+        self.btn = Button(text='Kalkulo pikën', size_hint=(0.4, 0.07), font_size='18sp',
                           pos_hint={'right': 0.94, 'y': 0.03}, on_release=toggle)
         self.add_widget(self.btn)
 
@@ -58,15 +58,15 @@ class P_in_Line(Screen):
                 if point_p > x2 or point_p < x1:
                     self.result_label.text = f'Vlerë e pamundur për P!'
                 elif point_p == x2:
-                    self.result_label.text = f'Rezultati: Infinit'
+                    self.result_label.text = f'Rez: Infinit'
                 else:
 
                     lambda_result = (x1 - point_p) / (point_p - x2)
 
                     if str(lambda_result).endswith('.0'):
-                        self.result_label.text = f'Rezultati: {str(round(lambda_result))}'
+                        self.result_label.text = f'Rez: {str(round(lambda_result))}'
                     else:
-                        self.result_label.text = f'Rezultati: {str(lambda_result)}'
+                        self.result_label.text = f'Rez: {str(lambda_result)}'
 
             elif self.state == 'Duke kalkuluar pikën':
                 x1 = float(self.x1_value.text)
@@ -79,9 +79,9 @@ class P_in_Line(Screen):
                 else:
                     result = (x1 + lambda_value * x2) / (1 + lambda_value)
                     if str(result).endswith('.0'):
-                        self.result_label.text = str(f'Rezultati: {round(result)}')
+                        self.result_label.text = str(f'Rez: {round(result)}')
                     else:
-                        self.result_label.text = str(f'Rezultati: {result}')
+                        self.result_label.text = str(f'Rez: {result}')
         except:
             show_popup()
 
@@ -89,7 +89,7 @@ class P_in_Line(Screen):
         self.x1_value.text = ''
         self.x2_value.text = ''
         self.input_label.text = ''
-        self.result_label.text = 'Rezultati: '
+        self.result_label.text = 'Rez: '
 
 class P_in_Plane(Screen):
 
@@ -113,9 +113,9 @@ class P_in_Plane(Screen):
             result = math.sqrt((x2-x1)**2 + (y2-y1)**2)
 
             if str(result).endswith('.0'):
-                self.result_label_plane.text = f'Rezultati: {round(result)}'
+                self.result_label_plane.text = f'Rez: {round(result)}'
             else:
-                self.result_label_plane.text = f'Rezultati: {result}'
+                self.result_label_plane.text = f'Rez:: {result}'
         except:
             show_popup()
 
@@ -124,7 +124,7 @@ class P_in_Plane(Screen):
         self.y_one.text = ''
         self.x_two.text = ''
         self.y_two.text = ''
-        self.result_label_plane.text = 'Rezultati: '
+        self.result_label_plane.text = 'D: '
 
 
 def toggle(self):
