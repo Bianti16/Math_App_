@@ -1,8 +1,12 @@
 from kivy.app import App
 
-# from kivy.config import Config
-# Config.set('graphics', 'width', 450)
-# Config.set('graphics', 'height', 800)
+from kivy.config import Config
+Config.set('graphics', 'width', 450)
+Config.set('graphics', 'height', 800)
+
+from kivy.core.window import Window
+Window.clearcolor = (8/255, 8/255, 8/255, 1)
+# Window.clearcolor = (0.96, 0.96, 0.96, 1)
 
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.floatlayout import FloatLayout
@@ -113,9 +117,9 @@ class P_in_Plane(Screen):
             result = math.sqrt((x2-x1)**2 + (y2-y1)**2)
 
             if str(result).endswith('.0'):
-                self.result_label_plane.text = f'Rez: {round(result)}'
+                self.result_label_plane.text = f'D: {round(result)}'
             else:
-                self.result_label_plane.text = f'Rez:: {result}'
+                self.result_label_plane.text = f'D: {result}'
         except:
             show_popup()
 
