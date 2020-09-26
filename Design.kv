@@ -1,19 +1,58 @@
 <P>:
     Label:
         text: "\n\nVlerë e pamundur për një ose \nmë shumë fusha."
-        font_size: 26
+        font_size: '26sp'
         size_hint: 0.6, 0.2
         pos_hint: {"x":0.2, "top":1}
 
     Button:
         text: "Kthehu"
-        font_size: 20
+        font_size: '20sp'
         size_hint: 0.6, 0.17
         pos_hint: {"x":0.2, "y":0.1}
         on_release:
             root.parent.parent.parent.dismiss()
 
-<MainPage>:
+<MenuButton@Button>:
+    size_hint: 0.7, 0.1
+    font_size: '26sp'
+
+<MainMenu>:
+    MenuButton:
+        text:"Pikat"
+        pos_hint:{"x":0.15, "top":0.85}
+        on_release:
+            app.root.current = "points"
+            root.manager.transition.direction = "left"
+
+    MenuButton:
+        text:"Button2"
+        pos_hint:{"x":0.15, "top":0.65}
+
+<Points>:
+    MenuButton:
+        text:"Pikat në bosht"
+        pos_hint:{"x":0.15, "top":0.85}
+        on_release:
+            app.root.current = "points_in_a_line"
+            root.manager.transition.direction = "left"
+
+    MenuButton:
+        text:"Pikat në rrafsh"
+        pos_hint:{"x":0.15, "top":0.65}
+        on_release:
+            app.root.current = "points_in_a_plane"
+            root.manager.transition.direction = "left"
+
+    Button:
+        size_hint: 0.4, 0.05
+        font_size: '16sp'
+        text: "< Kthehu"
+        on_release:
+            app.root.current = "menu"
+            root.manager.transition.direction = "right"
+
+<P_in_Line>:
 
     input_label: input_label
     result_label: result_label
@@ -37,22 +76,22 @@
 
             TextInput:
                 id: x1_value
-                font_size: 50
+                font_size: '50sp'
                 padding_y:[32, 0]
 
             TextInput:
                 id: x2_value
-                font_size: 50
+                font_size: '50sp'
                 padding_y:[32, 0]
 
             TextInput:
                 id: input_label
-                font_size: 50
+                font_size: '50sp'
                 padding_y:[32, 0]
 
     Button:
         text: 'Llogarit'
-        font_size: 20
+        font_size: '20sp'
         size_hint: 0.88, 0.06
         pos_hint: {'x': 0.06, 'y': 0.640}
         on_release:
@@ -62,14 +101,14 @@
         id: result_label
 
         text: 'Rezultati: '
-        font_size: 26
+        font_size: '26sp'
         padding_y:[9, 0]
         pos_hint: {'x': 0.06, 'y': 0.53}
         size_hint: 0.88, 0.060
 
     Button:
         text: 'Fshij'
-        font_size: 20
+        font_size: '20sp'
         size_hint: 0.88, 0.06
         pos_hint: {'x': 0.06, 'y': 0.470}
         on_release:
@@ -79,18 +118,18 @@
         id: state_label
 
         text: 'Duke kalkuluar lambdën'
-        font_size: 16
+        font_size: '16sp'
         size_hint: 0.4, 0.07
         pos_hint: {'right': 0.94, 'y':0.1}
 
     Label:
         text: 'x1'
-        font_size: 30
+        font_size: '30sp'
         size_hint: 0.0001, 0.0001
         pos_hint: {'x': 0.13, 'y': 0.9}
     Label:
         text: 'x2'
-        font_size: 30
+        font_size: '30sp'
         size_hint: 0.0001, 0.0001
         pos_hint: {'x': 0.42, 'y': 0.9}
 
@@ -98,6 +137,123 @@
         id: third_input_label
 
         text: 'Pika'
-        font_size: 30
+        font_size: '30sp'
         size_hint: 0.0001, 0.0001
         pos_hint: {'x': 0.75, 'y': 0.9}
+
+    Button:
+        size_hint: 0.4, 0.05
+        font_size: '16sp'
+        text: "< Kthehu"
+        on_release:
+            app.root.current = "points"
+            root.manager.transition.direction = "right"
+
+<P_in_Plane>:
+
+    x_one: x_one
+    y_one: y_one
+    x_two: x_two
+    y_two: y_two
+
+    result_label_plane: result_label_plane
+
+    # Point one
+    Label:
+        text: 'P1('
+        size_hint: 0.001, 0.001
+        font_size: '50sp'
+        pos_hint: {'x': 0.11, 'top': 0.85}
+
+    TextInput:
+        id: x_one
+
+        size_hint: 0.15, 0.0844
+        font_size: '40sp'
+        pos_hint: {'x': 0.21, 'top': 0.89}
+
+    Label:
+        text: ','
+        size_hint: 0.001, 0.001
+        font_size: '40sp'
+        pos_hint: {'x': 0.38, 'top': 0.83}
+
+    TextInput:
+        id: y_one
+
+        size_hint: 0.15, 0.0844
+        font_size: '40sp'
+        pos_hint: {'x': 0.40, 'top': 0.89}
+
+    Label:
+        text: ')'
+        size_hint: 0.001, 0.001
+        font_size: '50sp'
+        pos_hint: {'x': 0.58, 'top': 0.85}
+
+    # Point two
+    Label:
+        text: 'P2('
+        size_hint: 0.001, 0.001
+        font_size: '50sp'
+        pos_hint: {'x': 0.11, 'top': 0.74}
+
+    TextInput:
+        id: x_two
+
+        size_hint: 0.15, 0.0844
+        font_size: '40sp'
+        pos_hint: {'x': 0.21, 'top': 0.78}
+
+    Label:
+        text: ','
+        size_hint: 0.001, 0.001
+        font_size: '40sp'
+        pos_hint: {'x': 0.38, 'top': 0.72}
+
+    TextInput:
+        id: y_two
+
+        size_hint: 0.15, 0.0844
+        font_size: '40sp'
+        pos_hint: {'x': 0.40, 'top': 0.78}
+
+    Label:
+        text: ')'
+        size_hint: 0.001, 0.001
+        font_size: '50sp'
+        pos_hint: {'x': 0.58, 'top': 0.74}
+
+
+    Button:
+        text: 'Llogarit'
+        font_size: '20sp'
+        size_hint: 0.88, 0.06
+        pos_hint: {'x': 0.06, 'y': 0.60}
+        on_release:
+            root.calculate_distance_plane()
+
+    TextInput:
+        id: result_label_plane
+
+        text: 'Rezultati: '
+        font_size: '26sp'
+        padding_y:[9, 0]
+        pos_hint: {'x': 0.06, 'y': 0.49}
+        size_hint: 0.88, 0.060
+
+    Button:
+        text: 'Fshij'
+        font_size: '20sp'
+        size_hint: 0.88, 0.06
+        pos_hint: {'x': 0.06, 'y': 0.43}
+        on_release:
+            root.clear()
+
+    Button:
+        size_hint: 0.4, 0.05
+        font_size: '16sp'
+        text: "< Kthehu"
+        on_release:
+            app.root.current = "points"
+            root.manager.transition.direction = "right"
