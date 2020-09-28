@@ -1,9 +1,6 @@
 ## Kivy imports
 from kivy.config import Config
 
-Config.set('graphics', 'width', 450)
-Config.set('graphics', 'height', 860)
-
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 
