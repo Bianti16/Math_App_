@@ -2,7 +2,7 @@
 from kivy.config import Config
 
 Config.set('graphics', 'width', 450)
-Config.set('graphics', 'height', 800)
+Config.set('graphics', 'height', 860)
 
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
@@ -136,7 +136,7 @@ def toggle(self):
         self.text = 'Kalkulo lambdën'
         self.parent.state = 'Duke kalk. pikën'
         self.parent.third_input_label.text = 'Lambda'
-        self.parent.third_input_label.pos_hint = {'x': 0.77, 'y': 0.9}
+        self.parent.third_input_label.pos_hint = {'x': 0.77, 'y': 0.89}
 
     self.parent.state_label.text = str(self.parent.state)
 
