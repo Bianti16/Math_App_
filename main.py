@@ -1,6 +1,9 @@
 ## Kivy imports
 from kivy.config import Config
 
+Config.set('graphics', 'width', 450)
+Config.set('graphics', 'height', 860)
+
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 
@@ -53,17 +56,17 @@ class P_in_Line(Screen):
                 point_p = float(self.input_label.text)
 
                 if point_p > x2 or point_p < x1:
-                    self.result_label.text = f'Vlerë e pamundur për P!'
+                    self.result_label.text = f' Vlerë e pamundur për P!'
                 elif point_p == x2:
-                    self.result_label.text = f'Rez: Infinit'
+                    self.result_label.text = f' Rez: Infinit'
                 else:
 
                     lambda_result = (x1 - point_p) / (point_p - x2)
 
                     if str(lambda_result).endswith('.0'):
-                        self.result_label.text = f'Rez: {str(round(lambda_result))}'
+                        self.result_label.text = f' Rez: {str(round(lambda_result))}'
                     else:
-                        self.result_label.text = f'Rez: {str(lambda_result)}'
+                        self.result_label.text = f' Rez: {str(lambda_result)}'
 
             elif self.state == 'Duke kalk. pikën':
                 x1 = float(self.x1_value.text)
@@ -72,13 +75,13 @@ class P_in_Line(Screen):
                 lambda_value = float(self.input_label.text)
 
                 if lambda_value < 0:
-                    self.result_label.text = 'Vlerë e pamundur për lambda!'
+                    self.result_label.text = ' Vlerë e pamundur për lambda!'
                 else:
                     result = (x1 + lambda_value * x2) / (1 + lambda_value)
                     if str(result).endswith('.0'):
-                        self.result_label.text = str(f'Rez: {round(result)}')
+                        self.result_label.text = str(f' Rez: {round(result)}')
                     else:
-                        self.result_label.text = str(f'Rez: {result}')
+                        self.result_label.text = str(f' Rez: {result}')
         except:
             toast('Informacion i gabuar për një ose më shumë fusha')
 
@@ -86,7 +89,7 @@ class P_in_Line(Screen):
         self.x1_value.text = ''
         self.x2_value.text = ''
         self.input_label.text = ''
-        self.result_label.text = 'Rez: '
+        self.result_label.text = ' Rez: '
 
 class P_in_Plane(Screen):
     x_one = ObjectProperty(None)
@@ -109,9 +112,9 @@ class P_in_Plane(Screen):
             result = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
             if str(result).endswith('.0'):
-                self.result_label_plane.text = f'D: {round(result)}'
+                self.result_label_plane.text = f' D: {round(result)}'
             else:
-                self.result_label_plane.text = f'D: {result}'
+                self.result_label_plane.text = f' D: {result}'
         except:
             toast('Informacion i gabuar për një ose më shumë fusha')
 
@@ -120,7 +123,7 @@ class P_in_Plane(Screen):
         self.y_one.text = ''
         self.x_two.text = ''
         self.y_two.text = ''
-        self.result_label_plane.text = 'D: '
+        self.result_label_plane.text = ' D: '
 
 def toggle(self):
     if self.text == 'Kalkulo lambdën':

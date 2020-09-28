@@ -91,16 +91,19 @@ ScreenManager:
                 id: x1_value
                 font_size: '50sp'
                 padding_y:[32, 0]
+                background_active: self.background_normal
 
             MDTextFieldRect:
                 id: x2_value
                 font_size: '50sp'
                 padding_y:[32, 0]
+                background_active: self.background_normal
 
             MDTextFieldRect:
                 id: input_label
                 font_size: '50sp'
                 padding_y:[32, 0]
+                background_active: self.background_normal
 
     MDRaisedButton:
         text: 'Llogarit'
@@ -111,13 +114,21 @@ ScreenManager:
         on_release:
             root.calculate()
 
-    TextInput:
+    MDLabel:
         id: result_label
-        text: 'Rez: '
+
+        text: ' Rez: '
         font_size: '26sp'
         padding_y:[9, 0]
-        pos_hint: {'x': 0.059, 'y': 0.53}
-        size_hint: 0.882, 0.060
+        pos_hint: {'x': 0.06, 'y': 0.53115}
+        size_hint: 0.88, 0.058
+
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
     MDRaisedButton:
         text: 'Fshij'
@@ -195,6 +206,7 @@ ScreenManager:
         size_hint: 0.15, 0.0844
         font_size: '40sp'
         pos_hint: {'x': 0.27, 'top': 0.89}
+        background_active: self.background_normal
 
     Label:
         text: ','
@@ -208,6 +220,7 @@ ScreenManager:
         size_hint: 0.15, 0.0844
         font_size: '40sp'
         pos_hint: {'x': 0.46, 'top': 0.89}
+        background_active: self.background_normal
 
     Label:
         text: ')'
@@ -228,6 +241,7 @@ ScreenManager:
         size_hint: 0.15, 0.0844
         font_size: '40sp'
         pos_hint: {'x': 0.27, 'top': 0.78}
+        background_active: self.background_normal
 
     Label:
         text: ','
@@ -241,6 +255,7 @@ ScreenManager:
         size_hint: 0.15, 0.0844
         font_size: '40sp'
         pos_hint: {'x': 0.46, 'top': 0.78}
+        background_active: self.background_normal
 
     Label:
         text: ')'
@@ -258,14 +273,21 @@ ScreenManager:
         on_release:
             root.calculate_distance_plane()
 
-    TextInput:
+    MDLabel:
         id: result_label_plane
 
-        text: 'D: '
+        text: ' D: '
         font_size: '26sp'
         padding_y:[9, 0]
-        pos_hint: {'x': 0.059, 'y': 0.49}
-        size_hint: 0.882, 0.060
+        pos_hint: {'x': 0.06, 'y': 0.4905}
+        size_hint: 0.88, 0.058
+
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1 #Choose whatever colour you want here
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
     MDRaisedButton:
         text: 'Fshij'
