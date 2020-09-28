@@ -1,64 +1,71 @@
-<P>:
-    Label:
-        text: "\n\nVlerë e pamundur për një ose \nmë shumë fusha."
-        font_size: 26
-        size_hint: 0.6, 0.2
-        pos_hint: {"x":0.2, "top":1}
-
-    Button:
-        text: "Kthehu"
-        font_size: '20sp'
-        size_hint: 0.6, 0.17
-        pos_hint: {"x":0.2, "y":0.1}
-        on_release:
-            root.parent.parent.parent.dismiss()
-
-<MenuButton@Button>:
-    size_hint: 0.7, 0.1
-    font_size: '26sp'
-    background_normal: ''
-    background_color: 23/255, 99/255, 75/255, 1
-
-<Button>:
-    background_normal: ''
-    background_color: 23/255, 99/255, 75/255, 1
+ScreenManager:
+    MainMenu:
+    Points:
+    P_in_Line:
+    P_in_Plane:
 
 <MainMenu>:
-    MenuButton:
+    name: 'menu'
+    MDRaisedButton:
         text:"Pikat"
+        size_hint: 0.7, 0.1
+        font_size: '26sp'
+        text_color: 1, 1, 1, 1
         pos_hint:{"x":0.15, "top":0.85}
         on_release:
             app.root.current = "points"
             root.manager.transition.direction = "left"
 
-    MenuButton:
+    MDRaisedButton:
         text:"Button2"
+        size_hint: 0.7, 0.1
+        font_size: '26sp'
+        text_color: 1, 1, 1, 1
         pos_hint:{"x":0.15, "top":0.65}
 
 <Points>:
-    MenuButton:
+    name: 'points'
+
+    MDRaisedButton:
         text:"Pikat në bosht"
+        size_hint: 0.7, 0.1
+        font_size: '26sp'
+        text_color: 1, 1, 1, 1
         pos_hint:{"x":0.15, "top":0.85}
         on_release:
-            app.root.current = "points_in_a_line"
+            app.root.current = "p_in_line"
             root.manager.transition.direction = "left"
 
-    MenuButton:
+
+    MDRaisedButton:
         text:"Pikat në rrafsh"
+        size_hint: 0.7, 0.1
+        font_size: '26sp'
+        text_color: 1, 1, 1, 1
         pos_hint:{"x":0.15, "top":0.65}
         on_release:
-            app.root.current = "points_in_a_plane"
+            app.root.current = "p_in_plane"
             root.manager.transition.direction = "left"
 
-    Button:
+
+    MDRaisedButton:
+        text: "   Kthehu"
         size_hint: 0.4, 0.05
-        font_size: '16sp'
-        text: "< Kthehu"
+        font_size: '18sp'
+        text_color: 1, 1, 1, 1
+        on_release:
+            app.root.current = "menu"
+            root.manager.transition.direction = "right"
+
+    MDIconButton:
+        icon: 'chevron-left'
+        size_hint: 0.1, 0.05
         on_release:
             app.root.current = "menu"
             root.manager.transition.direction = "right"
 
 <P_in_Line>:
+    name: 'p_in_line'
 
     input_label: input_label
     result_label: result_label
@@ -71,8 +78,8 @@
     third_input_label: third_input_label
 
     GridLayout:
-        size_hint: 0.88, 0.5/3
-        pos_hint: {'x': 0.06, 'y': 0.70}
+        size_hint: 0.882, 0.5/3
+        pos_hint: {'x': 0.059, 'y': 0.7}
         rows: 1
         cols: 1
 
@@ -80,42 +87,43 @@
             rows: 1
             cols: 3
 
-            TextInput:
+            MDTextFieldRect:
                 id: x1_value
                 font_size: '50sp'
                 padding_y:[32, 0]
 
-            TextInput:
+            MDTextFieldRect:
                 id: x2_value
                 font_size: '50sp'
                 padding_y:[32, 0]
 
-            TextInput:
+            MDTextFieldRect:
                 id: input_label
                 font_size: '50sp'
                 padding_y:[32, 0]
 
-    Button:
+    MDRaisedButton:
         text: 'Llogarit'
         font_size: '20sp'
         size_hint: 0.88, 0.06
+        text_color: 1, 1, 1, 1
         pos_hint: {'x': 0.06, 'y': 0.640}
         on_release:
             root.calculate()
 
     TextInput:
         id: result_label
-
         text: 'Rez: '
         font_size: '26sp'
         padding_y:[9, 0]
-        pos_hint: {'x': 0.06, 'y': 0.53}
-        size_hint: 0.88, 0.060
+        pos_hint: {'x': 0.059, 'y': 0.53}
+        size_hint: 0.882, 0.060
 
-    Button:
+    MDRaisedButton:
         text: 'Fshij'
         font_size: '20sp'
         size_hint: 0.88, 0.06
+        text_color: 1, 1, 1, 1
         pos_hint: {'x': 0.06, 'y': 0.470}
         on_release:
             root.clear()
@@ -123,19 +131,20 @@
     Label:
         id: state_label
 
-        text: 'Duke kalkuluar lambdën'
+        text: 'Duke kalk. lambdën'
+        color: app.theme_cls.primary_color
         font_size: '16sp'
         size_hint: 0.4, 0.07
         pos_hint: {'right': 0.94, 'y':0.1}
 
     Label:
         text: 'x1'
-        font_size: '30sp'
+        font_size: '26sp'
         size_hint: 0.0001, 0.0001
         pos_hint: {'x': 0.13, 'y': 0.9}
     Label:
         text: 'x2'
-        font_size: '30sp'
+        font_size: '26sp'
         size_hint: 0.0001, 0.0001
         pos_hint: {'x': 0.42, 'y': 0.9}
 
@@ -143,19 +152,28 @@
         id: third_input_label
 
         text: 'Pika'
-        font_size: '30sp'
+        font_size: '26sp'
         size_hint: 0.0001, 0.0001
-        pos_hint: {'x': 0.75, 'y': 0.9}
+        pos_hint: {'x': 0.72, 'y': 0.9}
 
-    Button:
+    MDRaisedButton:
+        text: "   Kthehu"
         size_hint: 0.4, 0.05
-        font_size: '16sp'
-        text: "< Kthehu"
+        font_size: '18sp'
+        text_color: 1, 1, 1, 1
+        on_release:
+            app.root.current = "points"
+            root.manager.transition.direction = "right"
+
+    MDIconButton:
+        icon: 'chevron-left'
+        size_hint: 0.1, 0.05
         on_release:
             app.root.current = "points"
             root.manager.transition.direction = "right"
 
 <P_in_Plane>:
+    name: 'p_in_plane'
 
     x_one: x_one
     y_one: y_one
@@ -171,7 +189,7 @@
         font_size: '50sp'
         pos_hint: {'x': 0.16, 'top': 0.85}
 
-    TextInput:
+    MDTextFieldRect:
         id: x_one
 
         size_hint: 0.15, 0.0844
@@ -184,7 +202,7 @@
         font_size: '40sp'
         pos_hint: {'x': 0.44, 'top': 0.83}
 
-    TextInput:
+    MDTextFieldRect:
         id: y_one
 
         size_hint: 0.15, 0.0844
@@ -204,7 +222,7 @@
         font_size: '50sp'
         pos_hint: {'x': 0.16, 'top': 0.74}
 
-    TextInput:
+    MDTextFieldRect:
         id: x_two
 
         size_hint: 0.15, 0.0844
@@ -217,7 +235,7 @@
         font_size: '40sp'
         pos_hint: {'x': 0.44, 'top': 0.72}
 
-    TextInput:
+    MDTextFieldRect:
         id: y_two
 
         size_hint: 0.15, 0.0844
@@ -231,10 +249,11 @@
         pos_hint: {'x': 0.64, 'top': 0.74}
 
 
-    Button:
+    MDRaisedButton:
         text: 'Llogarit'
         font_size: '20sp'
         size_hint: 0.88, 0.06
+        text_color: 1, 1, 1, 1
         pos_hint: {'x': 0.06, 'y': 0.60}
         on_release:
             root.calculate_distance_plane()
@@ -245,21 +264,30 @@
         text: 'D: '
         font_size: '26sp'
         padding_y:[9, 0]
-        pos_hint: {'x': 0.06, 'y': 0.49}
-        size_hint: 0.88, 0.060
+        pos_hint: {'x': 0.059, 'y': 0.49}
+        size_hint: 0.882, 0.060
 
-    Button:
+    MDRaisedButton:
         text: 'Fshij'
         font_size: '20sp'
         size_hint: 0.88, 0.06
+        text_color: 1, 1, 1, 1
         pos_hint: {'x': 0.06, 'y': 0.43}
         on_release:
             root.clear()
 
-    Button:
+    MDRaisedButton:
+        text: "   Kthehu"
         size_hint: 0.4, 0.05
-        font_size: '16sp'
-        text: "< Kthehu"
+        font_size: '18sp'
+        text_color: 1, 1, 1, 1
+        on_release:
+            app.root.current = "points"
+            root.manager.transition.direction = "right"
+
+    MDIconButton:
+        icon: 'chevron-left'
+        size_hint: 0.1, 0.05
         on_release:
             app.root.current = "points"
             root.manager.transition.direction = "right"

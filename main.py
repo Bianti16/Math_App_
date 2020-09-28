@@ -1,31 +1,27 @@
-from kivy.app import App
-
+## Kivy imports
 from kivy.config import Config
+
 Config.set('graphics', 'width', 450)
 Config.set('graphics', 'height', 800)
 
-from kivy.core.window import Window
-Window.clearcolor = (8/255, 8/255, 8/255, 1)
-# Window.clearcolor = (0.96, 0.96, 0.96, 1)
-
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.button import Button
-from kivy.uix.screenmanager import ScreenManager, Screen
-
 from kivy.lang import Builder
-
 from kivy.properties import ObjectProperty
 
-from kivy.uix.popup import Popup
+from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.uix.button import Button
 
-## Dependencies
+## KivyMD imports
+from kivymd.app import MDApp
+from kivymd.uix.screen import Screen
+from kivymd.uix.button import MDRectangleFlatButton, MDFlatButton
+from kivymd.toast import toast
+from kivymd.uix.dialog import MDDialog
+
+# Dependencies:
 import math
-##
 
-class P(FloatLayout):
-    pass
 
+## App:
 class MainMenu(Screen):
     pass
 
@@ -33,7 +29,7 @@ class Points(Screen):
     pass
 
 class P_in_Line(Screen):
-    state = 'Duke kalkuluar lambdën'
+    state = 'Duke kalk. lambdën'
 
     def __init__(self, **kwargs):
         super(P_in_Line, self).__init__(**kwargs)
@@ -47,13 +43,13 @@ class P_in_Line(Screen):
         state_label = ObjectProperty(None)
         third_input_label = ObjectProperty(None)
 
-        self.btn = Button(text='Kalkulo pikën', size_hint=(0.4, 0.07), font_size='18sp',
-                          pos_hint={'right': 0.94, 'y': 0.03}, on_release=toggle)
+        self.btn = MDRectangleFlatButton(text='Kalkulo pikën', size_hint=(0.4, 0.07), font_size='16sp',
+                                         pos_hint={'right': 0.94, 'y': 0.03}, on_release=toggle)
         self.add_widget(self.btn)
 
     def calculate(self):
         try:
-            if self.state == 'Duke kalkuluar lambdën':
+            if self.state == 'Duke kalk. lambdën':
                 x1 = float(self.x1_value.text)
                 x2 = float(self.x2_value.text)
 
@@ -72,7 +68,7 @@ class P_in_Line(Screen):
                     else:
                         self.result_label.text = f'Rez: {str(lambda_result)}'
 
-            elif self.state == 'Duke kalkuluar pikën':
+            elif self.state == 'Duke kalk. pikën':
                 x1 = float(self.x1_value.text)
                 x2 = float(self.x2_value.text)
 
@@ -87,7 +83,7 @@ class P_in_Line(Screen):
                     else:
                         self.result_label.text = str(f'Rez: {result}')
         except:
-            show_popup()
+            toast('Informacion i gabuar për një ose më shumë fusha')
 
     def clear(self):
         self.x1_value.text = ''
@@ -96,7 +92,6 @@ class P_in_Line(Screen):
         self.result_label.text = 'Rez: '
 
 class P_in_Plane(Screen):
-
     x_one = ObjectProperty(None)
     y_one = ObjectProperty(None)
     x_two = ObjectProperty(None)
@@ -114,14 +109,14 @@ class P_in_Plane(Screen):
             x2 = float(self.x_two.text)
             y2 = float(self.y_two.text)
 
-            result = math.sqrt((x2-x1)**2 + (y2-y1)**2)
+            result = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
             if str(result).endswith('.0'):
                 self.result_label_plane.text = f'D: {round(result)}'
             else:
                 self.result_label_plane.text = f'D: {result}'
         except:
-            show_popup()
+            toast('Informacion i gabuar për një ose më shumë fusha')
 
     def clear(self):
         self.x_one.text = ''
@@ -130,42 +125,28 @@ class P_in_Plane(Screen):
         self.y_two.text = ''
         self.result_label_plane.text = 'D: '
 
-
 def toggle(self):
-
     if self.text == 'Kalkulo lambdën':
         self.text = 'Kalkulo pikën'
-        self.parent.state = 'Duke kalkuluar lambdën'
+        self.parent.state = 'Duke kalk. lambdën'
         self.parent.third_input_label.text = 'Pika'
-        self.parent.third_input_label.pos_hint = {'x': 0.75, 'y': 0.9}
+        self.parent.third_input_label.pos_hint = {'x': 0.72, 'y': 0.9}
 
     elif self.text == 'Kalkulo pikën':
         self.text = 'Kalkulo lambdën'
-        self.parent.state = 'Duke kalkuluar pikën'
+        self.parent.state = 'Duke kalk. pikën'
         self.parent.third_input_label.text = 'Lambda'
-        self.parent.third_input_label.pos_hint = {'x': 0.79, 'y': 0.9}
+        self.parent.third_input_label.pos_hint = {'x': 0.77, 'y': 0.9}
 
     self.parent.state_label.text = str(self.parent.state)
 
-def show_popup():
-    show = P()
-    popup_window = Popup(title="Gabim vlere", content=show, size_hint=(None, None), size=(400, 250),
-                             auto_dismiss=False)
-    popup_window.open()
-
-class WindowManager(ScreenManager):
-    pass
-
-kv = Builder.load_file('Design.kv')
-
-sm = WindowManager()
-screens = [MainMenu(name = "menu"), Points(name = 'points'), P_in_Line(name = 'points_in_a_line'), P_in_Plane(name = 'points_in_a_plane')]
-for screen in screens:
-    sm.add_widget(screen)
-
-class MyApp(App):
+class MyApp(MDApp):
     def build(self):
-        return sm
+        self.theme_cls.primary_palette = 'Green'
+        self.theme_cls.primary_hue = '700'
+        self.theme_cls.theme_style = 'Dark'
+        screen = Builder.load_file('Design.kv')
 
-if __name__ == '__main__':
-    MyApp().run()
+        return screen
+
+MyApp().run()
