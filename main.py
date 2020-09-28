@@ -130,7 +130,7 @@ def toggle(self):
         self.text = 'Kalkulo pikën'
         self.parent.state = 'Duke kalk. lambdën'
         self.parent.third_input_label.text = 'Pika'
-        self.parent.third_input_label.pos_hint = {'x': 0.72, 'y': 0.9}
+        self.parent.third_input_label.pos_hint = {'x': 0.72, 'y': 0.89}
 
     elif self.text == 'Kalkulo pikën':
         self.text = 'Kalkulo lambdën'
