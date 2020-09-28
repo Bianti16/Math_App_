@@ -43,7 +43,7 @@ class P_in_Line(Screen):
         state_label = ObjectProperty(None)
         third_input_label = ObjectProperty(None)
 
-        self.btn = MDRectangleFlatButton(text='Kalkulo pikën', size_hint=(0.4, 0.07), font_size='16sp',
+        self.btn = MDRectangleFlatButton(text='Kalkulo pikën', size_hint=(0.4, 0.07), font_size='16',
                                          pos_hint={'right': 0.94, 'y': 0.03}, on_release=toggle)
         self.add_widget(self.btn)
 
