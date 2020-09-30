@@ -83,7 +83,14 @@ class P_in_Line(Screen):
                     else:
                         self.result_label.text = str(f' Rez: {result}')
         except:
-            toast('Informacion i gabuar për një ose më shumë fusha')
+            # toast('Informacion i gabuar për një ose më shumë fusha')
+            btn_close = MDFlatButton(text='Në regull', text_color=(56 / 255, 142 / 255, 60 / 255, 1),
+                                     on_release=lambda btn: dialog.dismiss())
+
+            dialog = MDDialog(title='[color=FFFFFF]Informacion i gabuar[/color]',
+                              text='Vlerë e gabuar për një ose më shumë fusha', size_hint=(0.8, 1),
+                              buttons=[btn_close])
+            dialog.open()
 
     def clear(self):
         self.x1_value.text = ''
@@ -116,7 +123,11 @@ class P_in_Plane(Screen):
             else:
                 self.result_label_plane.text = f' D: {result}'
         except:
-            toast('Informacion i gabuar për një ose më shumë fusha')
+            # toast('Informacion i gabuar për një ose më shumë fusha')
+            btn_close = MDFlatButton(text = 'Në regull', text_color = (56/255, 142/255, 60/255, 1), on_release = lambda btn: dialog.dismiss())
+
+            dialog = MDDialog(title = '[color=FFFFFF]Informacion i gabuar[/color]', text = 'Vlerë e gabuar për një ose më shumë fusha', size_hint = (0.8, 1), buttons = [btn_close])
+            dialog.open()
 
     def clear(self):
         self.x_one.text = ''
@@ -124,6 +135,41 @@ class P_in_Plane(Screen):
         self.x_two.text = ''
         self.y_two.text = ''
         self.result_label_plane.text = ' D: '
+
+class P_in_Space(Screen):
+    x_one = ObjectProperty(None)
+    y_one = ObjectProperty(None)
+    x_two = ObjectProperty(None)
+    y_two = ObjectProperty(None)
+    z_one = ObjectProperty(None)
+    z_two = ObjectProperty(None)
+
+    result_label_space = ObjectProperty(None)
+
+    def calculate_distance_space(self):
+        x1 = float(self.x_one.text)
+        y1 = float(self.y_one.text)
+        x2 = float(self.x_two.text)
+        y2 = float(self.y_two.text)
+        z1 = float(self.z_one.text)
+        z2 = float(self.z_two.text)
+
+        result = math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2)
+
+        if str(result).endswith('.0'):
+            self.result_label_space.text = f' D: {round(result)}'
+        else:
+            self.result_label_space.text = f' D: {result}'
+
+    def clear(self):
+        self.x_one.text = ''
+        self.y_one.text = ''
+        self.x_two.text = ''
+        self.y_two.text = ''
+        self.z_one.text = ''
+        self.z_two.text = ''
+        self.result_label_space.text = ' D: '
+
 
 def toggle(self):
     if self.text == 'Kalkulo lambdën':

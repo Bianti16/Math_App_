@@ -3,6 +3,7 @@ ScreenManager:
     Points:
     P_in_Line:
     P_in_Plane:
+    P_in_Space:
 
 <MainMenu>:
     name: 'menu'
@@ -28,10 +29,10 @@ ScreenManager:
 
     MDRaisedButton:
         text:"Pikat në bosht"
-        size_hint: 0.7, 0.1
+        size_hint: 0.7, 0.09
         font_size: '26'
         text_color: 1, 1, 1, 1
-        pos_hint:{"x":0.15, "top":0.85}
+        pos_hint:{"x":0.15, "top":0.88}
         on_release:
             app.root.current = "p_in_line"
             root.manager.transition.direction = "left"
@@ -39,12 +40,22 @@ ScreenManager:
 
     MDRaisedButton:
         text:"Pikat në rrafsh"
-        size_hint: 0.7, 0.1
+        size_hint: 0.7, 0.09
         font_size: '26'
         text_color: 1, 1, 1, 1
-        pos_hint:{"x":0.15, "top":0.65}
+        pos_hint:{"x":0.15, "top":0.71}
         on_release:
             app.root.current = "p_in_plane"
+            root.manager.transition.direction = "left"
+
+    MDRaisedButton:
+        text:"Pikat në hapsirë"
+        size_hint: 0.7, 0.09
+        font_size: '26'
+        text_color: 1, 1, 1, 1
+        pos_hint:{"x":0.15, "top":0.54}
+        on_release:
+            app.root.current = "p_in_space"
             root.manager.transition.direction = "left"
 
 
@@ -135,7 +146,7 @@ ScreenManager:
         font_size: '20'
         size_hint: 0.88, 0.06
         text_color: 1, 1, 1, 1
-        pos_hint: {'x': 0.06, 'y': 0.470}
+        pos_hint: {'x': 0.06, 'y': 0.47}
         on_release:
             root.clear()
 
@@ -297,6 +308,169 @@ ScreenManager:
         pos_hint: {'x': 0.06, 'y': 0.43}
         on_release:
             root.clear()
+
+    MDRaisedButton:
+        text: "   Kthehu"
+        size_hint: 0.4, 0.05
+        font_size: '18'
+        text_color: 1, 1, 1, 1
+        on_release:
+            app.root.current = "points"
+            root.manager.transition.direction = "right"
+
+    MDIconButton:
+        icon: 'chevron-left'
+        size_hint: 0.1, 0.05
+        on_release:
+            app.root.current = "points"
+            root.manager.transition.direction = "right"
+
+<P_in_Space>:
+    name: 'p_in_space'
+
+    x_one: x_one
+    y_one: y_one
+    x_two: x_two
+    y_two: y_two
+    z_one: z_one
+    z_two: z_two
+
+    result_label_space: result_label_space
+
+    # Point one
+    Label:
+        text: 'P1('
+        size_hint: 0.001, 0.001
+        font_size: '50sp'
+        pos_hint: {'x': 0.16, 'top': 0.85}
+
+    MDTextFieldRect:
+        id: x_one
+
+        size_hint: 0.15, 0.0844
+        font_size: '40sp'
+        pos_hint: {'x': 0.27, 'top': 0.89}
+        background_active: self.background_normal
+
+    Label:
+        text: ','
+        size_hint: 0.001, 0.001
+        font_size: '40sp'
+        pos_hint: {'x': 0.44, 'top': 0.83}
+
+    MDTextFieldRect:
+        id: y_one
+
+        size_hint: 0.15, 0.0844
+        font_size: '40sp'
+        pos_hint: {'x': 0.46, 'top': 0.89}
+        background_active: self.background_normal
+
+    Label:
+        text: ','
+        size_hint: 0.001, 0.001
+        font_size: '40sp'
+        pos_hint: {'x': 0.63, 'top': 0.83}
+
+    MDTextFieldRect:
+        id: z_one
+
+        size_hint: 0.15, 0.0844
+        font_size: '40sp'
+        pos_hint: {'x': 0.65, 'top': 0.89}
+        background_active: self.background_normal
+
+    Label:
+        text: ')'
+        size_hint: 0.001, 0.001
+        font_size: '50sp'
+        pos_hint: {'x': 0.83, 'top': 0.85}
+
+    # Point two
+    Label:
+        text: 'P2('
+        size_hint: 0.001, 0.001
+        font_size: '50sp'
+        pos_hint: {'x': 0.16, 'top': 0.74}
+
+    MDTextFieldRect:
+        id: x_two
+
+        size_hint: 0.15, 0.0844
+        font_size: '40sp'
+        pos_hint: {'x': 0.27, 'top': 0.78}
+        background_active: self.background_normal
+
+    Label:
+        text: ','
+        size_hint: 0.001, 0.001
+        font_size: '40sp'
+        pos_hint: {'x': 0.44, 'top': 0.72}
+
+    MDTextFieldRect:
+        id: y_two
+
+        size_hint: 0.15, 0.0844
+        font_size: '40sp'
+        pos_hint: {'x': 0.46, 'top': 0.78}
+        background_active: self.background_normal
+
+    Label:
+        text: ','
+        size_hint: 0.001, 0.001
+        font_size: '40sp'
+        pos_hint: {'x': 0.63, 'top': 0.72}
+
+    MDTextFieldRect:
+        id: z_two
+
+        size_hint: 0.15, 0.0844
+        font_size: '40sp'
+        pos_hint: {'x': 0.65, 'top': 0.78}
+        background_active: self.background_normal
+
+    Label:
+        text: ')'
+        size_hint: 0.001, 0.001
+        font_size: '50sp'
+        pos_hint: {'x': 0.83, 'top': 0.74}
+
+
+    MDRaisedButton:
+        text: 'Llogarit'
+        font_size: '20'
+        size_hint: 0.88, 0.06
+        text_color: 1, 1, 1, 1
+        pos_hint: {'x': 0.06, 'y': 0.60}
+        on_release:
+            root.calculate_distance_space()
+
+    MDLabel:
+        id: result_label_space
+
+        text: ' D: '
+        font_size: '26sp'
+        padding_y:[9, 0]
+        pos_hint: {'x': 0.06, 'y': 0.4905}
+        size_hint: 0.88, 0.058
+
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1 #Choose whatever colour you want here
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    MDRaisedButton:
+        text: 'Fshij'
+        font_size: '20'
+        size_hint: 0.88, 0.06
+        text_color: 1, 1, 1, 1
+        pos_hint: {'x': 0.06, 'y': 0.43}
+        on_release:
+            root.clear()
+
+
 
     MDRaisedButton:
         text: "   Kthehu"
