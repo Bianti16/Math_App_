@@ -147,19 +147,28 @@ class P_in_Space(Screen):
     result_label_space = ObjectProperty(None)
 
     def calculate_distance_space(self):
-        x1 = float(self.x_one.text)
-        y1 = float(self.y_one.text)
-        x2 = float(self.x_two.text)
-        y2 = float(self.y_two.text)
-        z1 = float(self.z_one.text)
-        z2 = float(self.z_two.text)
+        try:
+            x1 = float(self.x_one.text)
+            y1 = float(self.y_one.text)
+            x2 = float(self.x_two.text)
+            y2 = float(self.y_two.text)
+            z1 = float(self.z_one.text)
+            z2 = float(self.z_two.text)
 
-        result = math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2)
+            result = math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2)
 
-        if str(result).endswith('.0'):
-            self.result_label_space.text = f' D: {round(result)}'
-        else:
-            self.result_label_space.text = f' D: {result}'
+            if str(result).endswith('.0'):
+                self.result_label_space.text = f' D: {round(result)}'
+            else:
+                self.result_label_space.text = f' D: {result}'
+        except:
+            # toast('Informacion i gabuar për një ose më shumë fusha')
+            btn_close = MDFlatButton(text='Në regull', text_color=(56 / 255, 142 / 255, 60 / 255, 1),
+                                     on_release=lambda btn: dialog.dismiss())
+
+            dialog = MDDialog(title='[color=FFFFFF]Informacion i gabuar[/color]',
+                              text='Vlerë e gabuar për një ose më shumë fusha', size_hint=(0.8, 1), buttons=[btn_close])
+            dialog.open()
 
     def clear(self):
         self.x_one.text = ''
